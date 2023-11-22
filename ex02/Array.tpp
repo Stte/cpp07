@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:16:56 by tspoof            #+#    #+#             */
-/*   Updated: 2023/11/22 19:03:33 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/11/22 19:36:31 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ template <typename T>
 T &Array<T>::operator[](unsigned int i) const
 {
 	if (i >= _size)
-		throw std::exception();
+		throw Array::AccessError();
 	return (_array[i]);
+}
+
+template <typename T>
+const char *Array<T>::AccessError::what(void) const throw()
+{
+	return ("NahUh! You can't access this element!");
 }
